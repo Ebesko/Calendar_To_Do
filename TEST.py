@@ -1,39 +1,38 @@
-#!/usr/bin/env python3
+import wx
 
-import tkinter
-from tkinter import *
 
-master = tkinter.Tk()
-master.geometry("750x500")
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(400, 200))
 
-listbox = Listbox(master)
-listbox.place(x=3,y=0)
+        # Create a vertical box sizer for the main frame
+        main_sizer = wx.BoxSizer(wx.VERTICAL)
 
-enable = ['button 1', 'button 2', 'button 3']
-list_for_listbox = ["one", "two", "three", "four"]
+        # Create a static text row for the days of the week
+        days_of_week_row = wx.StaticText(self, label="Sun Mon Tue Wed Thu Fri Sat")
+        main_sizer.Add(days_of_week_row, 0, wx.ALL | wx.EXPAND, border=10)
 
-for item in list_for_listbox:
-    listbox.insert(END, item)
-    for y in enable:
-        globals()["var{}{}".format(item, y)] = BooleanVar()
-        globals()["checkbox{}{}".format(item, y)] = Checkbutton(master, text=y, variable=globals()["var{}{}".format(item, y)])
+        # Create a grid sizer for the calendar (2 rows, 7 columns)
+        calendar_grid = wx.GridSizer(2, 7, 0, 0)
 
-def onselect(evt):
-    # Note here that Tkinter passes an event object to onselect()
-    w = evt.widget
-    x=0
-    index = int(w.curselection()[0])
-    value = w.get(index)
-    print ('You selected item %d: "%s"' % (index, value))
+        # Add date labels to the grid (you can customize this part)
+        for day in range(1, 8):
+            label = wx.StaticText(self, label=str(day))
+            calendar_grid.Add(label, 0, wx.ALL | wx.EXPAND, border=5)
 
-    for y in enable:
-        for item in list_for_listbox:
-            globals()["checkbox{}{}".format(item, y)].place_forget()
-        globals()["checkbox{}{}".format(value, y)].place(x=300,y=0+x)
-        x+=50
+        for date in range(8, 15):
+            label = wx.StaticText(self, label=str(date))
+            calendar_grid.Add(label, 0, wx.ALL | wx.EXPAND, border=5)
 
-listbox.bind('<<ListboxSelect>>', onselect)
+        # Add the grid sizer to the main sizer
+        main_sizer.Add(calendar_grid, 0, wx.ALL | wx.EXPAND, border=10)
 
-print(enable)
+        # Set the main sizer for the frame
+        self.SetSizer(main_sizer)
 
-mainloop()
+        self.Show()
+
+
+app = wx.App()
+frame = MyFrame(None, "Simple Week Display")
+app.MainLoop()

@@ -1,4 +1,6 @@
 import tkinter as tk
+import calendar
+import datetime
 
 MIDDLE_OF_SCREEN = "+700+300"
 FONT = ("Helvetica", 12)
@@ -18,7 +20,6 @@ class WindowCreator:
             self.root.grid_columnconfigure(i, weight=1)
 
         # Variables of input widgets
-        #self.rvalue = tk.IntVar()
         self.text_enter = tk.StringVar()
         self.radio_value = tk.IntVar()
 
@@ -51,6 +52,8 @@ class WindowCreator:
         # Add items to the Listbox
         for item in listed:
             listbox.insert(tk.END, item)
+
+        listbox.selection_set(first=0)
 
         return listbox
 
