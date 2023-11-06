@@ -68,7 +68,7 @@ class WindowCreator:
         user_entry.pack()
 
         # Radiobutton for Mathe oder Info
-        themes = ["Informatik", "Mathe"]
+        themes = ["Informatik", "Mathe", "Physik"]
         for i, item in enumerate(themes):
             theme_choice = tk.Radiobutton(frame, text=item, variable=self.radio_value, value=i)
             theme_choice.pack()
@@ -109,8 +109,10 @@ class WindowCreator:
 
         if self.radio_value.get() == 0:
             themed = "Informatik: "
-        else :
+        elif self.radio_value.get() == 1:
             themed = "Mathe: "
+        else:
+            themed = "Physik"
         task_name = themed + texted + " Before: " + day_selected
 
         def on_checkbox_checked():
