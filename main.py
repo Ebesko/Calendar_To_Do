@@ -1,7 +1,8 @@
 import tkinter as tk
-import calendar
-import datetime
+#from Calendar_To_Do import User Interface
+# Ajouter le fullscreen quand l'app est lancee.
 
+MIDDLE_OF_SCREEN_LAPTOP = "+400+100"
 MIDDLE_OF_SCREEN = "+700+300"
 FONT = ("Helvetica", 12)
 
@@ -12,7 +13,7 @@ class WindowCreator:
 
         # Configure name, size of window and where it opens
         root.title("Kalender")
-        root.geometry("500x500" + MIDDLE_OF_SCREEN)
+        root.geometry("500x500" + MIDDLE_OF_SCREEN_LAPTOP)
         self.top_frame()
 
         # Configure columns
