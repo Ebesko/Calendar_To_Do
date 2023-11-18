@@ -1,5 +1,8 @@
-import calendar
+# import calendar
 import datetime as d
+import tkinter
+import tkcalendar
+
 
 class Calendar:
     """Ici, on va tenter de recup la date actuelle pour pouvoir
@@ -9,4 +12,9 @@ class Calendar:
      Il faudra egalement prevoir les evenements."""
 
 print(d.datetime.today().strftime('%Y-%m-%d'))
-calendar.prmonth(2023, 12)
+
+root = tkinter.Tk()
+cal = tkcalendar.Calendar(root)
+cal.pack()
+# calendar.prmonth(2023, 12)
+root.mainloop()

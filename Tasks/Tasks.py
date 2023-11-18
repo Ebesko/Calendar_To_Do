@@ -27,7 +27,7 @@ class WindowCreator:
         self.radio_value = tk.IntVar()
 
         # Main frames
-        week = self.create_frame(1, 0, "Woche")
+        week = self.create_frame(1, 0, "Week")
         todo = self.create_frame(1, 1, "Verwaltung")
         # Task Frames
         extra = self.create_frame(2, 0, "Zu Erledigen")
@@ -87,11 +87,14 @@ class WindowCreator:
 
     def top_frame(self):
         top_frame = tk.Frame(self.root)
-        top_frame.grid(row=0, column=0, columnspan=2)
 
-        label = tk.Label(top_frame, text="Woche", font=FONT)
-        label.pack(padx=10, pady=10)
+        top_frame.grid(row=0, column=0)
 
+        label = tk.Label(top_frame, text="LEFT", font=FONT)
+        label.grid(row=0, column=0)
+
+        label2 = tk.Label(top_frame, text="Right", font=FONT)
+        label2.grid(row=0, column=1, sticky="ne")
     def create_frame(self, row, column, label_text):
         frame = tk.Frame(self.root, relief=tk.RIDGE, borderwidth=2)
         frame.grid(row=row, column=column, padx=10, pady=10, sticky="nsew")
@@ -100,42 +103,6 @@ class WindowCreator:
         label.pack(expand=True, side=tk.TOP)
 
         return frame
-
-    def create_task(self, frame, frame2):
-        """Create a task in the to do list
-        Task has a name and a checkbox
-        when checkbox crossed, task goes on the other frame"""
-
-        texted = self.text_enter.get()
-        valued = tk.IntVar()
-        day_selected = str((self.days_scroll.get(self.days_scroll.curselection())))
-
-        if self.radio_value.get() == 0:
-            themed = "Informatik: "
-        elif self.radio_value.get() == 1:
-            themed = "Mathe: "
-        else:
-            themed = "Physik"
-        task_name = themed + texted + " Before: " + day_selected
-
-        def on_checkbox_checked():
-            list_checked = []
-            if valued.get() == 1:
-                task.pack_forget()  # Remove the task from the current frame
-                task2 = tk.Checkbutton(frame2, text=task_name, variable=valued, command=lambda: on_checkbox_checked())
-                task2.pack()
-                list_checked.append(task2)
-                print(list_checked)
-
-        task = tk.Checkbutton(frame, text=task_name, variable=valued, command=lambda: on_checkbox_checked())
-        task.pack()
-
-    def task_status(self, task_value):
-        if task_value.get() == 1:
-            print("TRUE")
-        else:
-            print("FALSE")
-        #self.task_status(task.get())
 
     def launch(self, window):
         window.mainloop()
