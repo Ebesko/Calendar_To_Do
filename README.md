@@ -11,13 +11,6 @@ This project was originally made to help me organise at the uni. It allows you t
   
 
 You can also cross it when you're done, so that the task moves to the other section.   
-  
-
-
-
-### Branch  
-Now the project will moves towards a star wars themed calendar to do.   
-  
 
 <br/>  
 
